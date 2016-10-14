@@ -1,0 +1,11 @@
+{
+  "name": "czechitas-php-start-presentation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Martin Hason <martin.hason@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "reveal.js": "^3.3.0",
+    "reveal.js-menu": "^0.7.0"
+  }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <title>Tvoříme web v PHP</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+    <style type="text/css">
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal section img {
+            border: none;
+            box-shadow: none;
+        }
+
+        .slides .header {
+            position:absolute;
+            top: 0;
+            left: -50%;
+        }
+        .slides .footer {
+            position:absolute;
+            bottom: 0;
+            left: -50%;
+        }
+    </style>
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section data-markdown data-separator="^\n---\n$">
+            <script type="text/template">
+                Tvořím web v PHP!
+                =================
+
+                Martin Hasoň, Petr Jaša, Martin Mayer
+                15\. října 2016
+
+                ---
+
+                Tvorba webových stránek
+                -----------------------
+
+                <img src="images/web-development-process.png" width="50%" />
+
+                Note:
+                Z celého procesu vývoje webových stránek se dnes budeme užit development a trochu deployment.
+
+                ---
+
+                ![center](images/learn-to-code-free-online.jpg)
+
+                Note:
+                Ze všech možných technologií se dnes zaměříme na PHP.
+
+                ---
+
+                PHP
+                ---
+
+                - programovací jazyk určený hlavně pro tvorbu webu
+                - 1994 (PHP - Personal Home Page)
+
+                ### Používá
+                - Facebook, Wikipedia, Mall, ČSFD
+
+                ---
+
+                Kdo vytvořil PHP
+                ----------------
+
+                Rasmus Lerdorf | Zeev Suraski | Andi Gutmans
+                -------------- | ------------ | -----------
+                ![50%](images/rasmus-lerdorf.jpg)| ![50%](images/zeev-suraski.jpg) | ![95%](images/andi-gutmans.jpg)
+
+                ---
+
+                Sara Golemon
+            </script>
+        </section>
+    </div>
+</div>
+<script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+            var source = arguments[i];
+            for (var key in source) {
+                if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                }
+            }
+        }
+        return target;
+    }
+
+    // Optional libraries used to extend on reveal.js
+    var deps = [
+        {
+            src: 'node_modules/reveal.js/lib/js/classList.js', condition: function () {
+            return !document.body.classList;
+        }
+        },
+        {
+            src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function () {
+            return !!document.querySelector('[data-markdown]');
+        }
+        },
+        {
+            src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () {
+            return !!document.querySelector('[data-markdown]');
+        }
+        },
+        {
+            src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+            hljs.initHighlightingOnLoad();
+        }
+        },
+        {
+            src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+            return !!document.body.classList;
+        }
+        },
+        {src: 'node_modules/reveal.js/plugin/math/math.js', async: true},
+        {src: 'node_modules/reveal.js-menu/menu.js', async: true}
+    ];
+
+    var queryOptions = Reveal.getQueryHash() || {};
+
+    var options = {
+        controls: false,
+        progress: true,
+        history: true,
+        center: false,
+        fragments: true,
+        transition: "none",
+        dependencies: deps,
+        showNotes: true
+    };
+
+    Reveal.initialize(extend(options, queryOptions));
+</script>
+</body>
+</html>
