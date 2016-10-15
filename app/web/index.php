@@ -1,48 +1,42 @@
 <?php
 
+use RedBeanPHP\R;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$map = [
-    'home' => [
-        'url' => '/',
-        'template' => 'me.html',
-    ],
-    'kontakt' => [
-        'url' => '/kontakt',
-        'template' => 'contact.html',
-    ],
-    'reference' => [
-        'url' => '/reference',
-        'template' => 'work.html',
-    ],
-];
+$templateDir = __DIR__.'/views/';
+
+$db = R::setup()->getRedBean();
 
 $request = Request::createFromGlobals();
 $response = new Response();
 
-$route = $template = false;
-$path = $request->getPathInfo();
-foreach ($map as $name => $config) {
-    if ($config['url'] === $path) {
-        $route = $name;
-        $template = $config['template'];
-    }
-}
+$path = trim($request->getPathInfo(), '/');
+$template = $path.'.html';
 
-if (false === $route) {
+if ($path == '') {
+    $template = 'index.html';
+} elseif ($path == 'kontakt' && $request->isMethod('post')) {
+    $question = $db->dispense('question');
+    $question->import($request->request->all());
+    $question->created = new DateTime();
+    $db->store($question);
+
+    $response = new RedirectResponse('/podekovani');
+} elseif (!is_file($templateDir.$template)) {
+    $template = '404.html';
     $response->setStatusCode(404);
 }
 
-$twig = new Twig_Environment(new Twig_Loader_Filesystem(__DIR__.'/views'));
+$twig = new Twig_Environment(new Twig_Loader_Filesystem($templateDir));
 $response->setContent($twig->render('page.html', [
     'request' => $request,
-    'map' => $map,
-    'route' => $route,
+    'path' => $path,
     'template' => $template,
+    'db' => $db,
 ]));
 
 $response->send();
-
