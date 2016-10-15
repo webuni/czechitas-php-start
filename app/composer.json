@@ -5,7 +5,8 @@
         "symfony/http-foundation": "^3.1",
         "symfony/var-dumper": "^3.1",
         "nette/mail": "^2.4",
-        "gabordemooij/redbean": "^4.3"
+        "gabordemooij/redbean": "^4.3",
+        "twig/twig": "^1.26"
     },
     "license": "MIT",
     "authors": [
