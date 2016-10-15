@@ -167,10 +167,101 @@
 
                 ---
 
-                Jak to převést do programu
-                --------------------------
+                Jak to popsat - objekty
+                -----------------------
 
                 <center><img src="images/dog_example.png" width="100%" /></center>
+
+                Note:
+                Zkusme jmenovat další objekty, jejich vlastnosti a chování.
+
+                ---
+
+                Jak to popsat - funkce
+                ----------------------
+
+                - $f(x) = sin(x)$
+                - $y = sin(x)$ <!-- .element: class="fragment" -->
+
+                ```php
+                <?php
+                $x = M_PI/2;
+                $y = sin($x);
+
+                print_r($y);
+                ```
+                <!-- .element: class="fragment" -->
+
+                <center><img src="images/sinx.jpg" width="50%" /></center>
+                <!-- .element: class="fragment" -->
+
+                - vezmi(), seřad(), zvaž(), dej() <!-- .element: class="fragment" -->
+
+                Note:
+                Zkusme jmenovat další funkce. Rozdíl mezi prvním a druhým zápisem.
+
+                ---
+
+                Jak to popsat - program
+                -----------------------
+
+                Do hrnce dej oškrabané brambory, zalij je vodou a přidej sůl a kmín. Začni vařit.
+                Až jsou brambory chutné, vypni vařič. Vodu z hrnce vylej. <!-- .element: class="fragment" -->
+
+                ### Objektově <!-- .element: class="fragment" -->
+                Maminko, uvař prosím brambory. <!-- .element: class="fragment" -->
+
+                ```php
+                <?php
+                $mom = new Mother();
+                $potatoes = new Collection(new Potato(), new Potato(), new Potato());
+
+                $mom->cook($potatoes);
+                ```
+                <!-- .element: class="fragment" -->
+
+                Note: Znáte nějaký popis, jednoduchý program? Recept. A objekt, který tohle všechno udělá?
+
+                ---
+
+                Jednoduchý příklad - datum
+                --------------------------
+
+                ```php
+                <?php
+                $today = new DateTime();
+
+                print_r($today);
+                ```
+
+                ```php
+                <?php
+                $today = new DateTime();
+                $tomorrow = $today->modify('+1 day');
+
+                print_r($tomorrow);
+                ```
+                <!-- .element: class="fragment" -->
+
+                ```php
+                <?php
+                $valentine = new DateTime('2016-02-14');
+
+                print_r($valentine->modify('+ 15 days'));
+                ```
+                <!-- .element: class="fragment" -->
+
+                ```php
+                <?php
+                $birthday = new DateTime('1984-06-04');
+                $today = new DateTime();
+
+                print_r($today->diff($birthday));
+                ```
+                <!-- .element: class="fragment" -->
+
+                Note:
+                Maminku v PHP nemáme, ale podobné divy umí objekt pro datum.
 
             </script>
         </section>
@@ -233,6 +324,10 @@
         center: false,
         fragments: true,
         transition: "none",
+        math: {
+            mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
         dependencies: deps,
         showNotes: true
     };
